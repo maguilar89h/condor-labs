@@ -13,6 +13,8 @@ export class RecordDataComponent implements OnInit {
   modelStartDate: any;
   modelEndDate: any;
   stateCode: string = '';
+  ​cd_profession: string = '';
+
 
   stateCodeArray = ['FL','OH','GA','LA'];
 
@@ -25,7 +27,8 @@ export class RecordDataComponent implements OnInit {
 
   public onSubmit(){
     console.log("recordDataArray==>>"+this.recordDataArray);
-    this.recorDataService.getData(this.modelStartDate, this.modelEndDate, this.stateCode).subscribe(result => { this.recordDataArray = result; })
+    this.recorDataService.getData(this.modelStartDate, this.modelEndDate, this.stateCode,this.​cd_profession
+  ).subscribe(result => { this.recordDataArray = result; })
   }
 
 }

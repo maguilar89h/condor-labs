@@ -63,9 +63,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let record of recordDataArray | paginate: { itemsPerPage: 20, currentPage: p }">
-      <td >{{ record.dt_Start_Log | date: 'yyyy-MM-dd' }}  </td>
-      <td >{{ record.dt_end_log | date: 'yyyy-MM-dd' }}</td>
-      <td >{{ record.cd_cebroker_state }}</td>
+      <td>{{ record.dt_Start_Log | date: 'yyyy-MM-dd'}}</td>
+      <td>{{ record.dt_end_log | date: 'yyyy-MM-dd'}}</td>
+      <td>{{ record.cd_cebroker_state}}</td>
     </tr>
   </tbody>
 </table>
