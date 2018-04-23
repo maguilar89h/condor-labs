@@ -1,6 +1,5 @@
 import { Component, OnInit,Input } from '@angular/core';
 import * as c3 from 'c3';
-import { RecordData } from '../models/record-data';
 import { RecordDataService } from '../services/record-data.service';
 
 @Component({
@@ -15,7 +14,7 @@ export class ChartsComponent implements OnInit {
       console.log(recorDataService.getrecordDataArray());
    }
 
-  totalAverageResponseTime = 0;
+  totalAverageResponseTime = 10;
 
   ngOnInit() {
     console.log("recorDataService====>"+this.recorDataService.getDat);  
@@ -40,16 +39,18 @@ export class ChartsComponent implements OnInit {
     this.chart = c3.generate({
       data: {
           columns: [
-              ['Average Response Time per Day', this.totalAverageResponseTime],
+              ['Average Response Time per Day', 40],
           ],
           type: 'bar'
       },
       bar: {
           width: {
-              ratio: 0.2 // this makes bar width 50% of length between ticks
+              ratio: 0.2 
           }
       }
   });
 }
+
+
 
 }

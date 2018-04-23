@@ -9,13 +9,15 @@ import { RecordDataService } from './services/record-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { ChartsComponent } from './charts/charts.component';
+import { TotalAverageResponseTimeComponent } from './charts/total-average-response-time/total-average-response-time.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     RecordDataComponent,
-    ChartsComponent
+    ChartsComponent,
+    TotalAverageResponseTimeComponent
   ],
   imports: [
     BrowserModule,
