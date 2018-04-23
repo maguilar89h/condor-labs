@@ -6,27 +6,46 @@ import { DatePipe } from '@angular/common';
 
 @Injectable()
 export class RecordDataService {
+  public recordDataArray: any[];
 
   constructor(private http: HttpClient, private datePipe: DatePipe) { }
 
-  public getData(modelStartDate: any, modelEndDate: any,stateCode: string, ​cd_profession: string):Observable<RecordData[]>{
+  
+
+
+  getData():Observable<RecordData[]>{
+    let params = new HttpParams();
+    return this.http.get<RecordData[]>('https://api.cebroker.com/v1/cerenewaltransactions/GetLogsRecordData', {params: params});
+  }
+
+  getDat(): Observable<any> {
+     return this.http.get('https://api.cebroker.com/v1/cerenewaltransactions/GetLogsRecordData');
+  }
+  getrecordDataArray(){
+    const recordDataArray =  JSON.parse(localStorage.getItem('recordDataArray'));
+    if(recordDataArray != undefined){
+      this.recordDataArray = recordDataArray;
+    }
+
+    return recordDataArray;
+  }
+
+  getDatas(modelStartDate: any, modelEndDate: any,stateCode: string): Observable<any>{
     let params = new HttpParams();
     if(modelStartDate && modelStartDate != null){
+      console.log("startdate====>"+params.get('startdate'));
       params = params.set('startdate', this.datePipe.transform(new Date(modelStartDate.year, modelStartDate.month, modelStartDate.day), 'MM-dd-yyyy'));
     }
     if(modelEndDate && modelEndDate != null){
       params = params.set('enddate', this.datePipe.transform(new Date(modelEndDate.year, modelEndDate.month, modelEndDate.day), 'MM-dd-yyyy'));
     }
     if(stateCode && stateCode != ''){
-      console.log("stateCode==>"+stateCode);
-      params = params.set('stateCode', stateCode);
+      params = params.set('state', stateCode);
     }
-    if(​cd_profession && ​cd_profession!=null){
-      console.log("​cd_profession==>"+​cd_profession);
-      params = params.set('​cd_profession', ​cd_profession);
-    }
-    console.log("params==>"+params);
-    return this.http.get<RecordData[]>('https://api.cebroker.com/v1/cerenewaltransactions/GetLogsRecordData', {params: params});
-  }
 
+    console.log("startdate====>"+params.get('startdate'));
+ 
+    return this.http.get('https://api.cebroker.com/v1/cerenewaltransactions/GetLogsRecordData', {params:params})
+
+  }
 }

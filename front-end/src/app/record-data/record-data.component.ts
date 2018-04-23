@@ -10,11 +10,17 @@ import { RecordData } from '../models/record-data';
 })
 export class RecordDataComponent implements OnInit {
 
-  modelStartDate: any;
-  modelEndDate: any;
-  stateCode: string = '';
-  ​cd_profession: string = '';
-
+  public modelStartDate: any;
+  public modelEndDate: any;
+  public stateCode: string = '';
+  public ​cd_profession: string = '';
+  public pro_cde: number;
+  public id_license:number = 0;
+  public dt_end:Date;
+  public ds_compl_status_returned:string = '';
+  public id_client_nbr:string = '';
+  public cd_environment:string = '';
+  ​public cd_machine:string = '';
 
   stateCodeArray = ['FL','OH','GA','LA'];
 
@@ -23,12 +29,24 @@ export class RecordDataComponent implements OnInit {
   constructor(public recorDataService: RecordDataService) { }
 
   ngOnInit() {
+   
   }
 
   public onSubmit(){
-    console.log("recordDataArray==>>"+this.recordDataArray);
-    this.recorDataService.getData(this.modelStartDate, this.modelEndDate, this.stateCode,this.​cd_profession
-  ).subscribe(result => { this.recordDataArray = result; })
-  }
+    console.log(this.modelStartDate);
 
+       this.recorDataService.getDatas(this.modelStartDate, this.modelEndDate,
+        this.stateCode).subscribe(
+         (response) => {
+           console.log(response);
+           this.recordDataArray = response;
+           localStorage.setItem('recordDataArray', JSON.stringify(this.recordDataArray));
+           
+         },
+         (error) => {
+           console.log(error);
+         }
+        )
+    
+  }
 }

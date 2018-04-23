@@ -8,12 +8,14 @@ import { RecordDataComponent } from './record-data/record-data.component';
 import { RecordDataService } from './services/record-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
+import { ChartsComponent } from './charts/charts.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RecordDataComponent
+    RecordDataComponent,
+    ChartsComponent
   ],
   imports: [
     BrowserModule,
