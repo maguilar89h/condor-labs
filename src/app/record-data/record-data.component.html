@@ -1,0 +1,72 @@
+<div class="card">
+  <div class="card-header">
+    Filtros por atributos
+  </div>
+  <div class="card-body">
+    <form  (ngSubmit)="onSubmit()" >
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inputDateStart">Start Date</label>
+          <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd" id="inputDateStart"
+                   name="dp1" [(ngModel)]="modelStartDate" ngbDatepicker #d1="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" (click)="d1.toggle()" type="button">
+                <i class="fa fa-calendar" ></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="inputDateEnd">End Date</label>
+          <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd" id="inputDateEnd"
+                   name="dp2" [(ngModel)]="modelEndDate" ngbDatepicker #d2="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" (click)="d2.toggle()" type="button">
+                <i class="fa fa-calendar" ></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="inputDateStart">State</label>
+          <select class="form-control" [(ngModel)]="stateCode" name="stateCode" >
+            <option value="" label="Select" ></option>
+            <option *ngFor="let state of stateCodeArray" value="{{state}}" label="{{state}}" ></option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="form-row form-group">
+        <div>
+          <button class="btn btn-primary" type="submit" >
+            <i class="fa fa-search" ></i> Search
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+<hr>
+<table   class="table table-striped table-bordered" > 
+  <thead class="thead-light" >
+    <tr>
+      <th scope="col">Start Date</th>
+      <th scope="col">End Date</th>
+      <th scope="col">State</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let record of recordDataArray | paginate: { itemsPerPage: 20, currentPage: p }">
+      <td >{{ record.dt_Start_Log | date: 'yyyy-MM-dd' }}  </td>
+      <td >{{ record.dt_end_log | date: 'yyyy-MM-dd' }}</td>
+      <td >{{ record.cd_cebroker_state }}</td>
+    </tr>
+  </tbody>
+</table>
+<pagination-controls *ngIf="recordDataArray" (pageChange)="p = $event"></pagination-controls>
