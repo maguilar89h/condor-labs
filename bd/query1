@@ -1,0 +1,11 @@
+SELECT
+	ur.cd_role_type as "User Type",
+	"count"(up.id_user) as "Total Active", 
+	SUM(case WHEN nm_middle IS NULL or nm_middle <> '' then 1 else 0 end) AS "No Middle Name"
+FROM
+	"User_profile" up
+	JOIN "User_role" ur ON ur.id_user = up.id_user
+WHERE
+	up.id_user > 0
+AND ur.id_status = '1'
+GROUP BY ur.cd_role_type;
