@@ -41,7 +41,7 @@ export class RecordDataComponent implements OnInit {
            console.log(response);
            this.recordDataArray = response;
            localStorage.setItem('recordDataArray', JSON.stringify(this.recordDataArray));
-           
+           this.recorDataService.test();
          },
          (error) => {
            console.log(error);

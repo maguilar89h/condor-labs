@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { RecordData } from '../models/record-data';
 import { DatePipe } from '@angular/common';
 
@@ -10,7 +10,7 @@ export class RecordDataService {
 
   constructor(private http: HttpClient, private datePipe: DatePipe) { }
 
-  
+  private dataObservable = new BehaviorSubject<any[]>([]); 
 
 
   getData():Observable<RecordData[]>{
@@ -28,6 +28,14 @@ export class RecordDataService {
     }
 
     return recordDataArray;
+  }
+
+  test(){
+    this.dataObservable.next(this.getrecordDataArray());
+  }
+
+  dataAsObservable(): Observable<any[]>{
+    return this.dataObservable.asObservable();
   }
 
   getDatas(modelStartDate: any, modelEndDate: any,stateCode: string): Observable<any>{

@@ -15,6 +15,7 @@ import { TotalRequestsPerMachineComponent } from './charts/total-requests-per-ma
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,7 @@ import { TotalRequestsPerMachineComponent } from './charts/total-requests-per-ma
     TotalAverageResponseTimeComponent,
     AverageResponseTimePerDayComponent,
     TotalRequestsPerMachineComponent
+
   ],
   imports: [
     BrowserModule,

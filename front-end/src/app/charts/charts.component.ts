@@ -11,10 +11,12 @@ export class ChartsComponent implements OnInit {
 
   public chart;
   constructor(public recorDataService: RecordDataService) {
-    console.log(recorDataService.getrecordDataArray());
   }
 
-  totalAverageResponseTime = this.recorDataService.getDat.length;
+  totalFl = 0;
+  totalOh = 0;
+  totalGa = 0;
+  totalLa = 0;
 
   ngOnInit() {
     this.getValues();
@@ -22,31 +24,48 @@ export class ChartsComponent implements OnInit {
   }
 
   getValues() {
-    if (this.recorDataService && this.recorDataService.getDat.length > 0) {
-      let sumatory = 0;
-      this.recorDataService.getDat().forEach(each => {
-        sumatory += (new Date(each.dt_end_log).getTime() - new Date(each.dt_Start_Log).getTime());
-      });
-      this.totalAverageResponseTime = sumatory / this.recorDataService.getDat.length;
-    }
+    this.recorDataService.dataAsObservable().subscribe(
+      (res) => {
+        this.totalFl = 0;
+        this.totalOh = 0;
+        this.totalGa = 0;
+        this.totalLa = 0;
+        if (res && res.length > 0) {
+          res.forEach(each => {
+            if(each.cd_cebroker_state=="FL"){
+              this.totalFl++;
+            }else if(each.cd_cebroker_state=="OH"){
+              this.totalOh++;
+            }else if(each.cd_cebroker_state=="GA"){
+              this.totalGa++;
+            }else{
+              this.totalLa++;
+            }
+          });
+          this.ngAfterViewInit();
+        }
+      },
+      (err) => { console.log('error') }
+    )
   }
 
   ngAfterViewInit() {
     this.chart = c3.generate({
       bindto: '#charts',
       data: {
-          columns: [
-              ['Total Requests per Compliance Status', 20,12,45,78],
-          ],
-          type: 'bar'
+        columns: [
+          ['FL',this.totalFl],
+          ['OH',this.totalOh],
+          ['GA',this.totalGa],
+          ['LA',this.totalLa],
+        ],
+        type: 'bar'
       },
       bar: {
-          width: {
-              ratio: 0.5 
-          }
+        width: {
+          ratio: 0.5
+        }
       }
     });
   }
-
-
 }
