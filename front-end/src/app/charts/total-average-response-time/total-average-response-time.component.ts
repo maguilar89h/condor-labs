@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as c3 from 'c3';
+import { RecordDataService } from '../../services/record-data.service';
 
 @Component({
   selector: 'app-total-average-response-time',
@@ -10,17 +11,35 @@ export class TotalAverageResponseTimeComponent implements OnInit {
 
   public chart;
   public line;
-  constructor() { }
+  constructor(public recorDataService: RecordDataService) { }
+
+  public totalAverageResponseTime = 0;
 
   ngOnInit() {
-   
+    this.getValues();
+  }
+
+  getValues() {
+    this.recorDataService.dataAsObservable().subscribe(
+      (res) => {
+        if (res && res.length > 0) {
+          let sumatory = 0;
+          res.forEach(each => {
+            sumatory += (new Date(each.dt_end_log).getTime() - new Date(each.dt_Start_Log).getTime());
+          });
+          this.totalAverageResponseTime = sumatory;
+          this.ngAfterViewInit();
+        }
+      },
+      (err) => { console.log('error') }
+    )
   }
 
   ngAfterViewInit() {
         let chart = c3.generate({  bindto: '#chart',
         data: {
             columns: [
-                ['Average Response Time per Day', 40,45,12,34,122],
+                ['Total Average Response Time', this.totalAverageResponseTime],
             ],
             type: 'bar'
         },
