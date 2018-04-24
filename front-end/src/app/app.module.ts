@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { ChartsComponent } from './charts/charts.component';
 import { TotalAverageResponseTimeComponent } from './charts/total-average-response-time/total-average-response-time.component';
+import { AverageResponseTimePerDayComponent } from './charts/average-response-time-per-day/average-response-time-per-day.component';
+
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { TotalAverageResponseTimeComponent } from './charts/total-average-respon
     AppComponent,
     RecordDataComponent,
     ChartsComponent,
-    TotalAverageResponseTimeComponent
+    TotalAverageResponseTimeComponent,
+    AverageResponseTimePerDayComponent
   ],
   imports: [
     BrowserModule,

@@ -9,28 +9,28 @@ import * as c3 from 'c3';
 export class TotalAverageResponseTimeComponent implements OnInit {
 
   public chart;
+  public line;
   constructor() { }
 
   ngOnInit() {
-    this.ngAfterViewInit();
-    console.log("charttotalAverageResponseTime>>>>>>>>>>>>>");
+   
   }
-  
+
   ngAfterViewInit() {
-    this.chart = c3.generate({
-      data: {
-          columns: [
-              ['Average Response Time per Day', 40,45,12,34,122],
-          ],
-          type: 'bar'
-      },
-      bar: {
-          width: {
-              ratio: 0.2 
-          }
-      }
-  });
-}
+        let chart = c3.generate({  bindto: '#chart',
+        data: {
+            columns: [
+                ['Average Response Time per Day', 40,45,12,34,122],
+            ],
+            type: 'bar'
+        },
+        bar: {
+            width: {
+                ratio: 0.2 
+            }
+        }
+        });
+   }
 
 
 }
