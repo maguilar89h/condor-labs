@@ -11,6 +11,7 @@ import { DatePipe } from '@angular/common';
 import { ChartsComponent } from './charts/charts.component';
 import { TotalAverageResponseTimeComponent } from './charts/total-average-response-time/total-average-response-time.component';
 import { AverageResponseTimePerDayComponent } from './charts/average-response-time-per-day/average-response-time-per-day.component';
+import { TotalRequestsPerMachineComponent } from './charts/total-requests-per-machine/total-requests-per-machine.component';
 
 
 
@@ -20,7 +21,8 @@ import { AverageResponseTimePerDayComponent } from './charts/average-response-ti
     RecordDataComponent,
     ChartsComponent,
     TotalAverageResponseTimeComponent,
-    AverageResponseTimePerDayComponent
+    AverageResponseTimePerDayComponent,
+    TotalRequestsPerMachineComponent
   ],
   imports: [
     BrowserModule,
