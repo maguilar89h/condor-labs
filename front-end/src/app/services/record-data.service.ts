@@ -33,10 +33,11 @@ export class RecordDataService {
   getDatas(modelStartDate: any, modelEndDate: any,stateCode: string): Observable<any>{
     let params = new HttpParams();
     if(modelStartDate && modelStartDate != null){
-      console.log("startdate====>"+params.get('startdate'));
       params = params.set('startdate', this.datePipe.transform(new Date(modelStartDate.year, modelStartDate.month, modelStartDate.day), 'MM-dd-yyyy'));
+      console.log("startdate====>"+params.get('startdate'));
     }
     if(modelEndDate && modelEndDate != null){
+      console.log("enddate====>"+params.get('enddate'));
       params = params.set('enddate', this.datePipe.transform(new Date(modelEndDate.year, modelEndDate.month, modelEndDate.day), 'MM-dd-yyyy'));
     }
     if(stateCode && stateCode != ''){

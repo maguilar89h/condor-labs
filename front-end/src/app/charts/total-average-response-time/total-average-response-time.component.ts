@@ -20,7 +20,7 @@ export class TotalAverageResponseTimeComponent implements OnInit {
     this.chart = c3.generate({
       data: {
           columns: [
-              ['Average Response Time per Day', 40],
+              ['Average Response Time per Day', 40,45,12,34,122],
           ],
           type: 'bar'
       },
