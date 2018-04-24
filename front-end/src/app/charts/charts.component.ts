@@ -20,12 +20,12 @@ export class ChartsComponent implements OnInit {
 
   ngOnInit() {
     this.getValues();
-
   }
 
   getValues() {
     this.recorDataService.dataAsObservable().subscribe(
       (res) => {
+        console.log('responding', res);
         this.totalFl = 0;
         this.totalOh = 0;
         this.totalGa = 0;

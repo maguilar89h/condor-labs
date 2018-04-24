@@ -30,7 +30,7 @@ export class RecordDataService {
     return recordDataArray;
   }
 
-  test(){
+  refres(){
     this.dataObservable.next(this.getrecordDataArray());
   }
 
