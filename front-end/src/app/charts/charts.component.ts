@@ -36,7 +36,7 @@ export class ChartsComponent implements OnInit {
       bindto: '#charts',
       data: {
           columns: [
-              ['Average Response Time per Day t', 20,12,45,78],
+              ['Total Requests per Compliance Status', 20,12,45,78],
           ],
           type: 'bar'
       },
@@ -46,15 +46,6 @@ export class ChartsComponent implements OnInit {
           }
       }
     });
-    // let chart = c3.generate({
-    //   bindto: '#line',
-    //   data: {
-    //     columns: [
-    //       ['data1', 30, 200, 100, 400, 150, 250],
-    //       ['data2', 50, 20, 10, 40, 15, 25]
-    //     ]
-    //   }
-    // });
   }
 
 
